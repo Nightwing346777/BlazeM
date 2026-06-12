@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cypher Weather</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1f2937;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #374151;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input {
+      padding: 10px;
+      width: 70%;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🌦️ Cypher Weather</h1>
+
+  <input type="text" id="city" placeholder="Enter city">
+  <button onclick="getWeather()">Search</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+const weatherData = {
+  Nairobi: {
+    temp: 24,
+    condition: "Sunny",
+    humidity: 55
+  },
+  Mombasa: {
+    temp: 30,
+    condition: "Hot",
+    humidity: 78
+  },
+  Kisumu: {
+    temp: 28,
+    condition: "Partly Cloudy",
+    humidity: 65
+  },
+  London: {
+    temp: 18,
+    condition: "Rainy",
+    humidity: 82
+  }
+};
+
+function getWeather() {
+  const city = document.getElementById("city").value.trim();
+  const result = document.getElementById("result");
+
+  const data = weatherData[city];
+
+  if (!data) {
+    result.innerHTML =
+      "<p>City not available in demo database.</p>";
+    return;
+  }
+
+  result.innerHTML = `
+    <h2>${city}</h2>
+    <p>🌡️ Temperature: ${data.temp}°C</p>
+    <p>☁️ Condition: ${data.condition}</p>
+    <p>💧 Humidity: ${data.humidity}%</p>
+  `;
+}
+</script>
+
+</body>
+</html>
